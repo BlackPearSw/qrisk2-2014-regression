@@ -1,0 +1,30 @@
+{
+    "name": "qrisk2-2014-regression",
+    "version": "0.1.0",
+    "description": "regression tests for qrisk2-2014",
+    "keywords": [
+        "QRisk"
+    ],
+    "bugs": {
+        "url": "https://github.com/BlackPearSw/qrisk2-2014-regression/issues"
+    },
+    "license": "GPL-3.0+",
+    "contributors": [
+        {
+            "name": "Dunmail Hodkinson",
+            "email": "dunmail@blackpear.com"
+        }
+    ],
+    "main": "./lib/index.js",
+    "engines": {
+        "node": ">=0.10.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/BlackPearSw/qrisk2-2014-regression.git"
+    },
+    "dependencies": {
+        "qrisk2-2014": "^0.1.0",
+        "chai": "^1.9.2"
+    }
+}
