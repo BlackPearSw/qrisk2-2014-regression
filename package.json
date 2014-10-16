@@ -1,6 +1,6 @@
 {
     "name": "qrisk2-2014-regression",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "regression tests for qrisk2-2014",
     "keywords": [
         "QRisk"
@@ -24,7 +24,7 @@
         "url": "https://github.com/BlackPearSw/qrisk2-2014-regression.git"
     },
     "dependencies": {
-        "qrisk2-2014": "^0.1.0",
+        "qrisk2-2014": "^0.1.1",
         "chai": "^1.9.2"
     }
 }

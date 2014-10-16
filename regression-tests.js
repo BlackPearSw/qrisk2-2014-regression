@@ -6,12 +6,9 @@ var qrisk2 = require('qrisk2-2014');
 
 var fs = require('fs');
 var liner = require('./liner');
-var files = [
-        __dirname + '/regression-testcases.1.txt',
-        __dirname + '/regression-testcases.2.txt',
-        __dirname + '/regression-testcases.3.txt'];
-require('chai').should();
 
+var file = __dirname + '/' + process.argv[2];
+require('chai').should();
 
 function makeTestCase(line) {
     var values = line.split(' ');
@@ -41,44 +38,42 @@ function makeTestCase(line) {
 }
 
 var lineCount = 0;
-files.forEach(function (file) {
-    var source = fs.createReadStream(file);
-    source.pipe(liner);
-    liner.on('readable', function () {
-        var line;
-        while (line = liner.read()) {
+var source = fs.createReadStream(file);
+source.pipe(liner);
+liner.on('readable', function () {
+    var line;
+    while (line = liner.read()) {
 
-            var testCase = makeTestCase(line);
+        var testCase = makeTestCase(line);
 
-            function female(testCase) {
-                var result = qrisk2.female(testCase);
+        function female(testCase) {
+            var result = qrisk2.female(testCase);
 
-                result.score.should.equal(testCase.expected.female);
-            }
-
-
-            function male(testCase) {
-                var result = qrisk2.male(testCase);
-
-                result.score.should.equal(testCase.expected.male);
-            }
-
-            try {
-                female(testCase);
-                male(testCase);
-                lineCount++;
-                console.log(lineCount, line, 'OK')
-            }
-            catch (err) {
-                console.log(lineCount, line, 'ERR', err.message);
-            }
+            result.score.should.equal(testCase.expected.female);
         }
 
 
-    });
-    liner.on('close', function () {
-    });
-    liner.on('error', function (err) {
-        console.log(err);
-    });
+        function male(testCase) {
+            var result = qrisk2.male(testCase);
+
+            result.score.should.equal(testCase.expected.male);
+        }
+
+        try {
+            lineCount++;
+            female(testCase);
+            male(testCase);
+            //console.log(lineCount, line, 'OK')
+        }
+        catch (err) {
+            console.log(lineCount, line, 'ERR', err.message);
+        }
+    }
+
+
+});
+liner.on('close', function () {
+});
+liner.on('error', function (err) {
+    console.log(err);
 });

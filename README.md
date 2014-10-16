@@ -45,7 +45,9 @@ Test
 To execute regression tests:
 
     npm install
-    node regression-tests.js
+    node regression-tests.js regression-testcases.1.txt
+    node regression-tests.js regression-testcases.2.txt
+    node regression-tests.js regression-testcases.3.txt
 
 Copyright
 ---------
